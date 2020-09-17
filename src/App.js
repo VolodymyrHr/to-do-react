@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 
-import Task from './components/Task'
+import TaskList from './components/TaskList'
 
 class App extends Component {
 
@@ -35,12 +35,7 @@ class App extends Component {
               <input type="text" name="name" placeholder="Whot to do?" autoFocus/>
               <button type="submit"><i className="fa fa-plus"></i></button>
           </form>
-  
-          <ul id="tasks">
-            <Task task={this.tasks[0]}/>
-            <Task task={this.tasks[1]}/>
-            <Task task={this.tasks[2]}/>
-          </ul>
+          <TaskList tasks={this.tasks}/>
       </main>
       </div>
     );

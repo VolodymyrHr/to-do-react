@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default (props) => {
+const Task = (props) => {
     const task = props.task;
     (task.done)? task.checked = "checked": task.checked = "";
 
@@ -13,3 +13,5 @@ export default (props) => {
             </li>
             );
 }
+
+export default Task;
