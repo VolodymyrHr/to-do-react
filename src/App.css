@@ -68,6 +68,10 @@ form>input[type="text"],
     font-size: 1.1em;
 }
 
+form>input[type="text"]{
+    margin-left: 17px;
+}
+
 form>button,
 .task>button {
     background: transparent;

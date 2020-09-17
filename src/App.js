@@ -2,41 +2,50 @@ import React, {Component} from 'react';
 import './App.css';
 
 import TaskList from './components/TaskList'
+import Form from './components/Form'
+
 
 class App extends Component {
+  constructor(props){
+    super(props);
 
-  tasks = [
-    {
-      id: 8,
-      name: "Do homework",
-      done: true,
-      listId: 0
-  },
-  {
-      id: 9,
-      name: "Learn English",
-      done: false,
-      listId: 0
-  },
-  {
-      id: 11,
-      name: "Go to university",
-      done: true,
-      listId: 0
+    this.state = {
+      tasks: [],
+      taskEndpoints: "http://localhost:5000/api/tasks"
+    };
   }
-  ];
+
+  componentDidMount() {
+    fetch(this.state.taskEndpoints)
+        .then(response => response.json())
+        .then(data => {
+          this.setState({ tasks: data })});
+  }
+
+  postTask = (task, taskEndpoints) => {
+    return fetch(taskEndpoints, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(task)
+                })
+                .then(response => response.json())
+  }
+
+  createTask = (task) => {
+    const {tasks, taskEndpoints} = this.state;
+    this.postTask(task, taskEndpoints).then(task => this.setState({tasks: [...tasks, task]}));
+  }
 
   render(){
+    const {tasks} = this.state;
     return (
       <div className="App">
         <main>
-          <form name="task">
-              <input type="checkbox" name="done" id="done" value="true"/>
-              <input type="text" name="name" placeholder="Whot to do?" autoFocus/>
-              <button type="submit"><i className="fa fa-plus"></i></button>
-          </form>
-          <TaskList tasks={this.tasks}/>
-      </main>
+          <Form onSubmit={this.createTask}/>
+          <TaskList tasks={tasks}/>
+        </main>
       </div>
     );
   }
