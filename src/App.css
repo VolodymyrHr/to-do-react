@@ -1,38 +1,99 @@
+body,
+p,
+label,
+ul,
+li,
+input,
+button {
+    margin: 0;
+    padding: 0;
+}
+
+button,
+button:active,
+button:focus,
+input,
+input:active,
+input:focus {
+    outline: none;
+}
+
+ul li {
+    list-style: none;
+}
+
 .App {
-  text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+main {
+    margin-top: 50px;
+    width: 50%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.task {
+    clear: right;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    transition: .2s;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.task:hover {
+    background-color: #d3d3d3;
 }
 
-.App-link {
-  color: #61dafb;
+.task>input:checked ~ label{
+    text-decoration: line-through;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+ul li:nth-child(2n){
+    background-color: #f1f0f0;
+}
+
+.task>label,
+.task>button,
+form>button,
+label,
+input[type="checkbox"] {
+    cursor: pointer;
+}
+
+form>input[type="text"],
+.task>label {
+    margin-left: 4px;
+    width: calc(100% - 36px);
+    font-family: monospace;
+    font-size: 1.1em;
+}
+
+form>input[type="text"]{
+    width: calc(100% - 43px);
+}
+
+form>button,
+.task>button {
+    background: transparent;
+    border: none;
+    font-size: 1.2em;
+    color: tomato;
+}
+
+form>button{
+    color: green;
+}
+
+button>i {
+    z-index: -9;
+}
+
+form{
+    padding: 8px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #d3d3d3;
+}
+
+form>input[type="text"]{
+    border: none;
 }
