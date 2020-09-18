@@ -5,16 +5,16 @@ class Form extends Component{
         super(props);
     
         this.state = {
-          name: null
+          name: ''
         };
-      }
-    
+    }
 
     onSubmitHendler = (event) => {
         event.preventDefault();
         this.props.onSubmit({
             name: this.state.name
         })
+        this.setState({name: ''})
     }
 
     onChangeHendler = (event) => {
@@ -24,8 +24,14 @@ class Form extends Component{
     render(){
         return(
             <form name="task" onSubmit={this.onSubmitHendler}>
-                <input type="text" name="name" placeholder="Whot to do?" autoFocus 
-                    onChange={this.onChangeHendler}/>
+                <input 
+                    type="text" 
+                    name="name" 
+                    placeholder="Whot to do?" 
+                    autoFocus 
+                    onChange={this.onChangeHendler}
+                    value={this.state.name}
+                />
                 <button type="submit"><i className="fa fa-plus"></i></button>
             </form>
         );
