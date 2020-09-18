@@ -54,7 +54,10 @@ class App extends Component {
 
   createTask = (task) => {
     const {tasks, taskEndpoints} = this.state;
-    this.postTask(task, taskEndpoints).then(task => this.setState({tasks: [...tasks, task]}));
+    this.postTask(task, taskEndpoints)
+    .then((task) => this.setState({tasks: [...tasks, task]}),
+          (error) => console.log(error)
+    );
   }
 
   onChangeDone = (task) => {
@@ -64,7 +67,10 @@ class App extends Component {
 
   onClickDelete = (idTask) => {
     const {tasks, taskEndpoints} = this.state;
-    this.deleteTask(idTask.id, taskEndpoints).then(task => this.setState({tasks: [...tasks.filter(el => el.id !== idTask.id)]}))
+    this.deleteTask(idTask.id, taskEndpoints)
+    .then((task) => this.setState({tasks: [...tasks.filter(el => el.id !== idTask.id)]}),
+          (error) => console.log(error)
+    )
   }
 
   render(){
